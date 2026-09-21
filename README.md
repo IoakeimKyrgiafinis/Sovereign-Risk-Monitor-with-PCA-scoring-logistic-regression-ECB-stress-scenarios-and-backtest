@@ -1,6 +1,6 @@
 # Sovereign Risk Monitor
 
-A full-stack sovereign credit risk monitoring and stress testing tool for Eurozone countries, built as a portfolio project targeting financial risk management roles in consulting (Deloitte SR&T, PwC, Oliver Wyman).
+A full-stack sovereign credit risk monitoring and stress testing tool for Eurozone countries.
 
 Live data is pulled from the FRED API and IMF World Economic Outlook. Risk scores are computed using a PCA-weighted composite model and a logistic regression crisis probability estimator, both fitted on historical Eurozone data since 2005.
 
