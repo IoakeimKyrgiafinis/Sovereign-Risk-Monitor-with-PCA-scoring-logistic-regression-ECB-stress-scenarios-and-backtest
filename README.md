@@ -93,7 +93,7 @@ Get a free FRED API key at https://fred.stlouisfed.org/docs/api/api_key.html
 ---
 
 ## Project structure
-'''
+```
 sovereign-risk-monitor/
 ├── backend/
 │ ├── main.py # FastAPI app + model startup
@@ -115,4 +115,4 @@ sovereign-risk-monitor/
 ├── HistoricalChart.jsx
 ├── Backtest.jsx
 └── StressTest.jsx
-'''
+```
