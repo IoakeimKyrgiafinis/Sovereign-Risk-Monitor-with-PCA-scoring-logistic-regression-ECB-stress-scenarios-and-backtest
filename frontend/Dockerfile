@@ -1,21 +1,18 @@
-FROM node:20-slim AS builder
-
+FROM node:18-alpine as build
 WORKDIR /app
 
+# Install dependencies first (cached unless package.json changes)
 COPY package*.json ./
 RUN npm install
 
+# Copy ALL frontend files (including index.html and src/)
 COPY . .
 
-ARG VITE_API_URL
-RUN echo "VITE_API_URL=$VITE_API_URL" > .env && cat .env
+# Run Vite build AFTER copying updated index.html
 RUN npm run build
 
-FROM node:20-slim
-
-WORKDIR /app
-RUN npm install -g serve
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 3000
-CMD ["serve", "-s", "dist", "-l", "3000"]
+# Serve with nginx or static server
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
